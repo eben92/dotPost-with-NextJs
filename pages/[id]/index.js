@@ -12,13 +12,14 @@ const Note = ({ note }) => {
     if (isDeleting) {
       deleteNote();
     }
+    //eslint-disable-next-line
   }, [isDeleting]);
 
   const deleteNote = async () => {
     const noteId = router.query.id;
 
     try {
-      const deleted = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
+      const deleted = await fetch(`${process.env.API_URI}/${noteId}`, {
         method: "DELETE",
       });
 
@@ -58,7 +59,7 @@ const Note = ({ note }) => {
 };
 
 Note.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
+  const res = await fetch(`${process.env.API_URI}/${id}`);
   const { data } = await res.json();
 
   return { note: data };

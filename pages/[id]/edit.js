@@ -22,6 +22,7 @@ const EditNote = ({ note }) => {
         setIsSubmitting(false);
       }
     }
+    //eslint-disable-next-line
   }, [errors]);
 
   const handleChange = (e) => {
@@ -42,19 +43,32 @@ const EditNote = ({ note }) => {
 
   const UpdateNote = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/notes/${router.query.id}`,
-        {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(form),
-        }
-      );
+      // ! production
+      const res = await fetch(`${process.env.API_URI}/${router.query.id}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
 
       router.push("/");
+
+      // !Local
+      // const res = await fetch(
+      //   `http://localhost:3000/api/notes/${router.query.id}`,
+      //   {
+      //     method: "PUT",
+      //     headers: {
+      //       Accept: "application/json",
+      //       "content-type": "application/json",
+      //     },
+      //     body: JSON.stringify(form),
+      //   }
+      // );
+
+      // router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +129,7 @@ const EditNote = ({ note }) => {
 };
 
 EditNote.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
+  const res = await fetch(`${process.env.API_URI}/${id}`);
   const { data } = await res.json();
 
   return { note: data };
