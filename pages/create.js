@@ -43,7 +43,7 @@ const Create = () => {
 
   const createNote = async () => {
     try {
-      const res = await fetch(`${process.env.API_URI}`, {
+      const res = await fetch(`http://localhost:3000/api/notes`, {
         method: "POST",
         headers: {
           Accept: "application/json",

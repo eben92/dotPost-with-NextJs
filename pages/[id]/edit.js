@@ -44,14 +44,17 @@ const EditNote = ({ note }) => {
   const UpdateNote = async () => {
     try {
       // ! production
-      const res = await fetch(`${process.env.API_URI}/${router.query.id}`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch(
+        `http://localhost:3000/api/notes/${router.query.id}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        }
+      );
 
       router.push("/");
 
@@ -129,7 +132,7 @@ const EditNote = ({ note }) => {
 };
 
 EditNote.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`${process.env.API_URI}/${id}`);
+  const res = await fetch(`http://localhost:3000/api/notes/${id}`);
   const { data } = await res.json();
 
   return { note: data };
