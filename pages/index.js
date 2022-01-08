@@ -2,6 +2,8 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import axios from "axios";
 import { Button, Card } from "semantic-ui-react";
+
+const baseUrl = process.env.BASE_URL;
 const Index = ({ notes }) => {
   return (
     <div className='notes-container'>
@@ -36,7 +38,11 @@ const Index = ({ notes }) => {
 };
 
 Index.getInitialProps = async () => {
+<<<<<<< HEAD
   const res = await fetch(`http://localhost:3000/api/notes`);
+=======
+  const res = await fetch(`${baseUrl}/api/notes`);
+>>>>>>> main
   const { data } = await res.json();
 
   return { notes: data };

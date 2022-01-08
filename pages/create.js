@@ -3,6 +3,8 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
+
+const baseUrl = process.env.BASE_URL;
 const Create = () => {
   const [form, setForm] = useState({
     title: "",
@@ -43,7 +45,11 @@ const Create = () => {
 
   const createNote = async () => {
     try {
+<<<<<<< HEAD
       const res = await fetch(`http://localhost:3000/api/notes`, {
+=======
+      const res = await fetch(`${baseUrl}/api/notes`, {
+>>>>>>> main
         method: "POST",
         headers: {
           Accept: "application/json",
