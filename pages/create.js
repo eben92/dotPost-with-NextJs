@@ -1,0 +1,95 @@
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import fetch from "isomorphic-unfetch";
+import { Button, Form, Loader } from "semantic-ui-react";
+import { useRouter } from "next/router";
+const Create = () => {
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSubmitting) {
+      if (Object.keys(errors).length === 0) {
+        // createNotr();
+        alert("submited");
+        console.log("success");
+      } else {
+        setIsSubmitting(false);
+      }
+    }
+  }, [errors]);
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let err = validate();
+    setErrors(err);
+
+    setIsSubmitting(true);
+  };
+
+  const validate = () => {
+    let err = {};
+
+    if (!form.title) {
+      err.title = "title is required";
+    }
+    if (!form.description) {
+      err.description = "Description is required";
+    }
+
+    return err;
+  };
+  return (
+    <div className='form-container'>
+      <h1>Create Note</h1>
+      <div>
+        {isSubmitting ? (
+          <Loader active inline='centered' />
+        ) : (
+          <Form onSubmit={handleSubmit}>
+            <Form.Input
+              fluid
+              error={
+                errors.title
+                  ? { content: "please enter a title", pointing: "below" }
+                  : null
+              }
+              label='title'
+              placeholder='title'
+              name='title'
+              onChange={handleChange}
+            />
+            <Form.TextArea
+              fluid
+              error={
+                errors.title
+                  ? { content: "please enter a description", pointing: "below" }
+                  : null
+              }
+              placeholder='description'
+              label='placeholder'
+              name='description'
+              onChange={handleChange}
+            />
+            <Button type='submit'>Create</Button>
+          </Form>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Create;
