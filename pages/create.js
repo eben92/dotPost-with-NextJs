@@ -15,8 +15,8 @@ const Create = () => {
   useEffect(() => {
     if (isSubmitting) {
       if (Object.keys(errors).length === 0) {
-        // createNotr();
-        alert("submited");
+        createNote();
+        // alert("submited");
         console.log("success");
       } else {
         setIsSubmitting(false);
@@ -38,6 +38,23 @@ const Create = () => {
     setErrors(err);
 
     setIsSubmitting(true);
+  };
+
+  const createNote = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/notes", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const validate = () => {
