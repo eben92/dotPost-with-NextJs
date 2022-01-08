@@ -12,6 +12,7 @@ const Note = ({ note }) => {
     if (isDeleting) {
       deleteNote();
     }
+    //eslint-disable-next-line
   }, [isDeleting]);
 
   const deleteNote = async () => {

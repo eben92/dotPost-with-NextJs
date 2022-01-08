@@ -22,6 +22,7 @@ const EditNote = ({ note }) => {
         setIsSubmitting(false);
       }
     }
+    //eslint-disable-next-line
   }, [errors]);
 
   const handleChange = (e) => {
