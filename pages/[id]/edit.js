@@ -3,6 +3,8 @@ import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 import { Button, Form, Loader } from "semantic-ui-react";
 import { useRouter } from "next/router";
+
+const baseUrl = process.env.BASE_URL;
 const EditNote = ({ note }) => {
   const [form, setForm] = useState({
     title: note.title,
@@ -44,7 +46,7 @@ const EditNote = ({ note }) => {
   const UpdateNote = async () => {
     try {
       // ! production
-      const res = await fetch(`${process.env.API_URI}/${router.query.id}`, {
+      const res = await fetch(`${baseUrl}/api/notes/${router.query.id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
@@ -129,7 +131,7 @@ const EditNote = ({ note }) => {
 };
 
 EditNote.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`${process.env.API_URI}/${id}`);
+  const res = await fetch(`${baseUrl}/api/notes/${id}`);
   const { data } = await res.json();
 
   return { note: data };

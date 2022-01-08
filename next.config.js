@@ -1,13 +1,14 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    MONGO_URI:
+    MONGODB_URL:
       "mongodb+srv://eben:lmaohaveit@cluster0.celgl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 
     // production
-    API_URI: "https://dotpostttt.vercel.app/api/notes",
+    // API_URL: "https://dotpostttt.vercel.app/api/notes",
+    BASE_URL: "https://dotpostttt.vercel.app",
 
     // DEVELOPMENT
-    LOCAL_URI: "http://localhost:3000/api/notes",
+    LOCAL_URL: "http://localhost:3000",
   },
 };
