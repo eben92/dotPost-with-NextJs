@@ -45,11 +45,7 @@ const Create = () => {
 
   const createNote = async () => {
     try {
-<<<<<<< HEAD
-      const res = await fetch(`http://localhost:3000/api/notes`, {
-=======
       const res = await fetch(`${baseUrl}/api/notes`, {
->>>>>>> main
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -73,6 +69,15 @@ const Create = () => {
     if (!form.description) {
       err.description = "Description is required";
     }
+    if (!form.link1) {
+      err.description = "Description is required";
+    }
+    // if (!form.link2) {
+    //   err.description = "Description is required";
+    // }
+    // if (!form.link3) {
+    //   err.description = "Description is required";
+    // }
 
     return err;
   };
@@ -106,6 +111,42 @@ const Create = () => {
               placeholder='description'
               label='placeholder'
               name='description'
+              onChange={handleChange}
+            />
+            <Form.Input
+              fluid
+              error={
+                errors.title
+                  ? { content: "please enter a title", pointing: "below" }
+                  : null
+              }
+              label='link1'
+              placeholder='screenshotlink'
+              name='link1'
+              onChange={handleChange}
+            />
+            <Form.Input
+              fluid
+              // error={
+              //   errors.title
+              //     ? { content: "please enter a title", pointing: "below" }
+              //     : null
+              // }
+              label='link2'
+              placeholder='screenshotlink'
+              name='link2'
+              onChange={handleChange}
+            />
+            <Form.Input
+              fluid
+              // error={
+              //   errors.title
+              //     ? { content: "please enter a title", pointing: "below" }
+              //     : null
+              // }
+              label='link3'
+              placeholder='screenshotlink'
+              name='link3'
               onChange={handleChange}
             />
             <Button type='submit'>Create</Button>

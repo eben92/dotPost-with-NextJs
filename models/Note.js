@@ -13,6 +13,21 @@ const NoteSchema = new mongoose.Schema({
     required: [true, "Please add a description"],
     maxlength: [200, "description cannot be more than 200 characters"],
   },
+
+  link1: {
+    type: String,
+    required: [true],
+  },
+
+  link2: {
+    type: String,
+    // required: [true],
+  },
+
+  link3: {
+    type: String,
+    // required: [true],
+  },
 });
 
 module.exports = mongoose.models.Note || mongoose.model("Note", NoteSchema);

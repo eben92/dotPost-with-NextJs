@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
 import { Confirm, Button, Loader } from "semantic-ui-react";
@@ -46,6 +47,13 @@ const Note = ({ note }) => {
         <Loader active />
       ) : (
         <>
+          <Image
+            // src='https://images.unsplash.com/photo-1638913972706-91fc2cb57152?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+            src={`${note.link1}`}
+            alt='Picture of the author'
+            width={500}
+            height={500}
+          />
           <h1>{note.title}</h1>
           <h1>{note.description}</h1>
           <Button color='red' onClick={open}>
